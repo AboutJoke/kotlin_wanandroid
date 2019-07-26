@@ -3,4 +3,6 @@
     <color name="colorPrimary">#00abff</color>
     <color name="colorPrimaryDark">#00abff</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="item_bg">#FFFFFF</color>
+    <color name="while_most_color">#e4e4e4</color>
 </resources>

@@ -15,7 +15,7 @@ import tryCatch
 class HomeModelImpl : HomeModel {
 
     override fun getHomeList(homeListListener: HomePresenter.onHomeListListener, page: Int) {
-        GlobalScope.launch(Dispatchers.IO) {
+        GlobalScope.launch(Dispatchers.Main) {
             tryCatch({
                 it.printStackTrace()
                 homeListListener.getHomeListFailed(it.toString())

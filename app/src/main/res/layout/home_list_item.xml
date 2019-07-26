@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginTop="5dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="@dimen/dp_10"
+    app:cardCornerRadius="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp">
+
+        <com.sylvan.kotlin_wanandroid.widget.AlignTextView
+            android:id="@+id/homeItemAuthor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="bottom"
+            android:textColor="@android:color/secondary_text_light"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="作者" />
+
+        <TextView
+            android:id="@+id/homeItemDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:paddingEnd="@dimen/dp_10"
+            android:textColor="@android:color/darker_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry"
+            tools:text="日期" />
+
+        <com.sylvan.kotlin_wanandroid.widget.AlignTextView
+            android:id="@+id/homeItemTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="2"
+            android:paddingTop="@dimen/dp_10"
+            android:paddingBottom="@dimen/dp_4"
+            android:textColor="@android:color/primary_text_light"
+            android:textSize="19sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/homeItemAuthor"
+            tools:text="标题" />
+
+        <TextView
+            android:id="@+id/homeItemType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:textColor="@android:color/secondary_text_light"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@+id/homeItemLike"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/homeItemLike"
+            tools:text="类型" />
+
+        <ImageView
+            android:id="@+id/homeItemLike"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/dp_10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/homeItemTitle"
+            app:srcCompat="@drawable/ic_action_no_like"
+            tools:ignore="ContentDescription" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
