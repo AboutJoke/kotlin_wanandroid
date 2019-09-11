@@ -11,4 +11,6 @@ interface HomeModel {
 
     fun getHomeList(homeListListener: HomePresenter.onHomeListListener, page: Int = 0)
 
+    fun getBanner(onBannerListener: HomePresenter.OnBannerListener)
+
 }

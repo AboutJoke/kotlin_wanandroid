@@ -1,5 +1,6 @@
 package com.sylvan.kotlin_wanandroid.retrofit
 
+import com.sylvan.kotlin_wanandroid.bean.BannerResponse
 import com.sylvan.kotlin_wanandroid.bean.HomeListResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -20,4 +21,11 @@ interface RetrofitServices {
     suspend fun getHomeList(
         @Path("page") page: Int
     ): HomeListResponse
+
+    /**
+     * 首页Banner
+     * @return BannerResponse
+     */
+    @GET("/banner/json")
+    suspend fun getBanner(): BannerResponse
 }

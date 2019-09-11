@@ -25,4 +25,16 @@ class HomeModelImpl : HomeModel {
             }
         }
     }
+
+    override fun getBanner(onBannerListener: HomePresenter.OnBannerListener) {
+        GlobalScope.launch(Dispatchers.Main) {
+            tryCatch({
+                it.printStackTrace()
+                onBannerListener.getBannerFailed(it.toString())
+            }) {
+                val banner = RetrofitClient.retrofitService.getBanner()
+                onBannerListener.getBannerSuccess(banner)
+            }
+        }
+    }
 }

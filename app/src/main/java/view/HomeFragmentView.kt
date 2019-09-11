@@ -1,5 +1,6 @@
 package view
 
+import com.sylvan.kotlin_wanandroid.bean.BannerResponse
 import com.sylvan.kotlin_wanandroid.bean.HomeListResponse
 
 /**
@@ -12,4 +13,8 @@ interface HomeFragmentView {
     fun getHomeListSuccess(result: HomeListResponse)
 
     fun getHomeListFailed(errorMsg: String?)
+
+    fun getBannerListSuccess(result: BannerResponse)
+
+    fun getBannerListFailed(errorMsg: String?)
 }

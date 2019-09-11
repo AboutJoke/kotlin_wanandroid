@@ -1,5 +1,6 @@
 package com.sylvan.kotlin_wanandroid.presenter
 
+import com.sylvan.kotlin_wanandroid.bean.BannerResponse
 import com.sylvan.kotlin_wanandroid.bean.HomeListResponse
 
 
@@ -22,5 +23,15 @@ interface HomePresenter {
         fun getHomeListFailed(errorNsg : String?)
     }
 
+    /**
+     * banner list
+     */
+    interface OnBannerListener {
 
+        fun getBanner()
+
+        fun getBannerSuccess(result: BannerResponse)
+
+        fun getBannerFailed(errorMessage: String?)
+    }
 }

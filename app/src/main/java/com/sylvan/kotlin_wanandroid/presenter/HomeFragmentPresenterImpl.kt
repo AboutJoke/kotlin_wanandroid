@@ -1,5 +1,6 @@
 package com.sylvan.kotlin_wanandroid.presenter
 
+import com.sylvan.kotlin_wanandroid.bean.BannerResponse
 import com.sylvan.kotlin_wanandroid.bean.HomeListResponse
 import com.sylvan.kotlin_wanandroid.model.HomeModel
 import com.sylvan.kotlin_wanandroid.model.HomeModelImpl
@@ -10,7 +11,8 @@ import view.HomeFragmentView
  * @Author: sylvan
  * @Date: 19-7-24
  */
-class HomeFragmentPresenterImpl(private val homeFragmentView : HomeFragmentView) : HomePresenter.onHomeListListener {
+class HomeFragmentPresenterImpl(private val homeFragmentView: HomeFragmentView) : HomePresenter.onHomeListListener,
+    HomePresenter.OnBannerListener {
 
     private val homeModel: HomeModel = HomeModelImpl()
 
@@ -23,26 +25,27 @@ class HomeFragmentPresenterImpl(private val homeFragmentView : HomeFragmentView)
             homeFragmentView.getHomeListFailed(result.errorMsg)
             return
         }
-//        // 列表总数
-//        val total = result.data.total
-//        if (total == 0) {
-//            homeFragmentView.getHomeListZero()
-//            return
-//        }
-//        // 当第一页小于一页总数时
-//        if (total < result.data.size) {
-//            homeFragmentView.getHomeListSmall(result)
-//            return
-//        }
         homeFragmentView.getHomeListSuccess(result)
     }
 
     override fun getHomeListFailed(errorNsg: String?) {
     }
 
+    override fun getBanner() {
+        homeModel.getBanner(this)
+    }
+
+    override fun getBannerSuccess(result: BannerResponse) {
+        if (result.errorCode != 0) {
+            homeFragmentView.getBannerListFailed(result.errorMsg)
+            return
+        }
+        homeFragmentView.getBannerListSuccess(result)
+    }
+
+    override fun getBannerFailed(errorMessage: String?) {
+    }
+
     fun cancelRequest() {
-//        homeModel.cancelBannerRequest()
-//        homeModel.cancelHomeListRequest()
-//        collectArticleModel.cancelCollectRequest()
     }
 }
