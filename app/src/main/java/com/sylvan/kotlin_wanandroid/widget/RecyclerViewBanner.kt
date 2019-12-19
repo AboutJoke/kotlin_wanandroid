@@ -1,6 +1,7 @@
 package com.sylvan.kotlin_wanandroid.widget
 
 import android.content.Context
+import android.content.Intent
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.sylvan.kotlin_wanandroid.R
 import com.sylvan.kotlin_wanandroid.bean.BannerResponse
+import com.sylvan.kotlin_wanandroid.ui.WebViewAct
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -57,6 +59,16 @@ class RecyclerViewBanner : FrameLayout {
 
         bannerAdapter.run {
             bindToRecyclerView(banner)
+            setOnItemClickListener { _, _, position ->
+                if (datas.size != 0) {
+                    Intent(context, WebViewAct::class.java).run {
+                        putExtra(Constant.CONTENT_URL_KEY, datas[position].url)
+                        putExtra(Constant.CONTENT_ID_KEY, datas[position].id)
+                        putExtra(Constant.CONTENT_TITLE_KEY, datas[position].title)
+                        context.startActivity(this)
+                    }
+                }
+            }
         }
 
         val layoutParams =
@@ -92,7 +104,7 @@ class RecyclerViewBanner : FrameLayout {
         bannerSwitchJob = getBannerSwitchJob().apply { start() }
     }
 
-    private fun cancelSwitchJob() = bannerSwitchJob?.run {
+    fun cancelSwitchJob() = bannerSwitchJob?.run {
         if (isActive) {
             cancel()
         }

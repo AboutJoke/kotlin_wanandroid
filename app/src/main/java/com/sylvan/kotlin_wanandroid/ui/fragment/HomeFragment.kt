@@ -1,9 +1,11 @@
 package com.sylvan.kotlin_wanandroid.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -14,6 +16,7 @@ import com.sylvan.kotlin_wanandroid.bean.BannerResponse
 import com.sylvan.kotlin_wanandroid.bean.Datas
 import com.sylvan.kotlin_wanandroid.bean.HomeListResponse
 import com.sylvan.kotlin_wanandroid.presenter.HomeFragmentPresenterImpl
+import com.sylvan.kotlin_wanandroid.ui.WebViewAct
 import com.sylvan.kotlin_wanandroid.widget.RecyclerViewBanner
 import inflater
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -72,10 +75,22 @@ class HomeFragment : BaseFragment(), HomeFragmentView {
             bindToRecyclerView(home_list)
             setOnLoadMoreListener(onLoadMoreListener, home_list)
             addHeaderView(banner)
+            onItemClickListener = onItemClickListeners
         }
 
         homeFragmentPresenter.getBanner()
         homeFragmentPresenter.getHomeList()
+    }
+
+    private val onItemClickListeners = BaseQuickAdapter.OnItemClickListener { _, _, position ->
+        if (datas.size != 0) {
+            Intent(activity, WebViewAct::class.java).run {
+                putExtra(Constant.CONTENT_URL_KEY, datas[position].link)
+                putExtra(Constant.CONTENT_ID_KEY, datas[position].id)
+                putExtra(Constant.CONTENT_TITLE_KEY, datas[position].title)
+                startActivity(this)
+            }
+        }
     }
 
     private val onLoadMoreListener = BaseQuickAdapter.RequestLoadMoreListener {

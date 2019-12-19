@@ -9,7 +9,7 @@ import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import com.just.agentweb.AgentWeb
-import com.just.agentweb.ChromeClientCallbackManager
+import com.just.agentweb.WebChromeClient
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Deferred
 
@@ -92,12 +92,11 @@ fun getRandomColor(): String = "#${Integer.toHexString((Math.random() * 16777215
 fun String.getAgentWeb(
     activity: Activity, webContent: ViewGroup,
     layoutParams: ViewGroup.LayoutParams,
-    receivedTitleCallback: ChromeClientCallbackManager.ReceivedTitleCallback?
+    webChromeClient: WebChromeClient
 ) = AgentWeb.with(activity)//传入Activity or Fragment
     .setAgentWebParent(webContent, layoutParams)//传入AgentWeb 的父控件
     .useDefaultIndicator()// 使用默认进度条
-    .defaultProgressBarColor() // 使用默认进度条颜色
-    .setReceivedTitleCallback(receivedTitleCallback) //设置 Web 页面的 title 回调
+    .setWebChromeClient(webChromeClient)
     .createAgentWeb()//
     .ready()
     .go(this)!!
