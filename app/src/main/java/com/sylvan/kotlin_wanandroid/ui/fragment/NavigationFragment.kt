@@ -23,6 +23,10 @@ class NavigationFragment: BaseFragment() {
         return rootView
     }
 
+    override fun initView(view: View) {
+
+    }
+
     override fun cancelRequest() {
     }
 }

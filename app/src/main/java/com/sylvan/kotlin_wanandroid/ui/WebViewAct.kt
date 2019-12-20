@@ -2,6 +2,7 @@ package com.sylvan.kotlin_wanandroid.ui
 
 import Constant
 import android.os.Bundle
+import android.view.MenuItem
 import android.webkit.WebView
 import android.widget.LinearLayout
 import com.just.agentweb.AgentWeb
@@ -17,12 +18,14 @@ import kotlinx.android.synthetic.main.activity_webview.*
  * @Author: sylvan
  * @Date: 19-12-18
  */
-class WebViewAct: BaseActivity() {
+class WebViewAct : BaseActivity() {
 
     private lateinit var mTitle: String
     private lateinit var mUrl: String
     private lateinit var webView: AgentWeb
     private var mId: Int = 0
+    override fun initView() {
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +58,16 @@ class WebViewAct: BaseActivity() {
                 }
             }
         }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     override fun onResume() {
         super.onResume()

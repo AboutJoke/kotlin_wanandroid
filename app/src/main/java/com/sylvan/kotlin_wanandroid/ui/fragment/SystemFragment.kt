@@ -14,6 +14,8 @@ import com.sylvan.kotlin_wanandroid.base.BaseFragment
  */
 class SystemFragment : BaseFragment() {
     private var rootView: View? = null
+    override fun initView(view: View) {
+    }
 
     override fun cancelRequest() {
     }

@@ -1,35 +1,35 @@
 package com.sylvan.kotlin_wanandroid.ui.fragment
 
+import Constant
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.get
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.sylvan.kotlin_wanandroid.R
 import com.sylvan.kotlin_wanandroid.adapter.HomeAdapter
-import com.sylvan.kotlin_wanandroid.base.BaseFragment
+import com.sylvan.kotlin_wanandroid.base.BaseMvpFragment
 import com.sylvan.kotlin_wanandroid.bean.BannerResponse
 import com.sylvan.kotlin_wanandroid.bean.Datas
 import com.sylvan.kotlin_wanandroid.bean.HomeListResponse
-import com.sylvan.kotlin_wanandroid.presenter.HomeFragmentPresenterImpl
+import com.sylvan.kotlin_wanandroid.mvp.contract.HomeContract
+import com.sylvan.kotlin_wanandroid.mvp.presenter.HomePresenter
 import com.sylvan.kotlin_wanandroid.ui.WebViewAct
 import com.sylvan.kotlin_wanandroid.widget.RecyclerViewBanner
 import inflater
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.home_banner.*
 import toast
-import view.HomeFragmentView
 
 /**
  * @ClassName: com.sylvan.kotlin_wanandroid.ui.fragment
  * @Author: sylvan
  * @Date: 19-7-25
  */
-class HomeFragment : BaseFragment(), HomeFragmentView {
+class HomeFragment : BaseMvpFragment<HomeContract.View, HomeContract.Presenter>(), HomeContract.View  {
 
     private var rootView: View? = null
     private val datas = mutableListOf<Datas>()
@@ -38,9 +38,7 @@ class HomeFragment : BaseFragment(), HomeFragmentView {
 
     private lateinit var banner: RecyclerViewBanner
 
-    private val homeFragmentPresenter: HomeFragmentPresenterImpl by lazy {
-        HomeFragmentPresenterImpl(this)
-    }
+    override fun createPresenter(): HomeContract.Presenter  = HomePresenter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -78,8 +76,8 @@ class HomeFragment : BaseFragment(), HomeFragmentView {
             onItemClickListener = onItemClickListeners
         }
 
-        homeFragmentPresenter.getBanner()
-        homeFragmentPresenter.getHomeList()
+        mPresenter?.getBanner()
+        mPresenter?.getHomeList()
     }
 
     private val onItemClickListeners = BaseQuickAdapter.OnItemClickListener { _, _, position ->
@@ -95,7 +93,7 @@ class HomeFragment : BaseFragment(), HomeFragmentView {
 
     private val onLoadMoreListener = BaseQuickAdapter.RequestLoadMoreListener {
         val page = homeAdapter.data.size / 20 + 1
-        homeFragmentPresenter.getHomeList(page)
+        mPresenter?.getHomeList(page)
     }
 
     private val onRefreshListener = SwipeRefreshLayout.OnRefreshListener {
@@ -106,13 +104,13 @@ class HomeFragment : BaseFragment(), HomeFragmentView {
         refresh.isRefreshing = true
         homeAdapter.setEnableLoadMore(false)
         banner.cancelSwitchJob()
-        homeFragmentPresenter.getBanner()
-        homeFragmentPresenter.getHomeList()
+        mPresenter?.getBanner()
+        mPresenter?.getHomeList()
     }
 
 
     override fun cancelRequest() {
-        homeFragmentPresenter.cancelRequest()
+
     }
 
     override fun getHomeListSuccess(result: HomeListResponse) {

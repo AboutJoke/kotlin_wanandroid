@@ -1,5 +1,7 @@
 package com.sylvan.kotlin_wanandroid.base
 
+import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 
 /**
@@ -10,6 +12,16 @@ import androidx.fragment.app.Fragment
 abstract class BaseFragment : Fragment() {
 
     protected var isFirst: Boolean = true
+
+    /**
+     * 初始化 View
+     */
+    abstract fun initView(view: View)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView(view)
+    }
 
     /**
      * cancel request

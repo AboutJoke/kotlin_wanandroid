@@ -19,10 +19,16 @@ abstract class BaseActivity : AppCompatActivity() {
         getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     }
 
+    /**
+     * 初始化 View
+     */
+    abstract fun initView()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(setLayoutId())
         initImmBar()
+        initView()
     }
 
     protected open fun initImmBar() {

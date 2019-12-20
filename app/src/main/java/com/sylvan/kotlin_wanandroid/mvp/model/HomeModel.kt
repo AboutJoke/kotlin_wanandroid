@@ -1,6 +1,7 @@
-package com.sylvan.kotlin_wanandroid.model
+package com.sylvan.kotlin_wanandroid.mvp.model
 
-import com.sylvan.kotlin_wanandroid.presenter.HomePresenter
+import com.sylvan.kotlin_wanandroid.base.BaseModel
+import com.sylvan.kotlin_wanandroid.mvp.contract.HomeContract
 import com.sylvan.kotlin_wanandroid.retrofit.RetrofitClient
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -12,9 +13,8 @@ import tryCatch
  * @Author: sylvan
  * @Date: 19-7-24
  */
-class HomeModelImpl : HomeModel {
-
-    override fun getHomeList(homeListListener: HomePresenter.onHomeListListener, page: Int) {
+class HomeModel: BaseModel(), HomeContract.Model {
+    override fun getHomeList(homeListListener: HomeContract.Presenter, page: Int) {
         GlobalScope.launch(Dispatchers.Main) {
             tryCatch({
                 it.printStackTrace()
@@ -26,7 +26,7 @@ class HomeModelImpl : HomeModel {
         }
     }
 
-    override fun getBanner(onBannerListener: HomePresenter.OnBannerListener) {
+    override fun getBanner(onBannerListener: HomeContract.Presenter) {
         GlobalScope.launch(Dispatchers.Main) {
             tryCatch({
                 it.printStackTrace()
@@ -37,4 +37,5 @@ class HomeModelImpl : HomeModel {
             }
         }
     }
+
 }

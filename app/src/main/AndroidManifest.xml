@@ -40,7 +40,6 @@
         </activity>
 
         <activity
-            android:parentActivityName=".ui.MainActivity"
             android:name=".ui.WebViewAct"
             android:theme="@style/AppTheme.NoActionBar">
 

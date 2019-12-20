@@ -78,6 +78,9 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         false
     }
 
+    override fun initView() {
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val toolbar: Toolbar = findViewById(R.id.toolbar)
