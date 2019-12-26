@@ -3,9 +3,8 @@ package com.sylvan.kotlin_wanandroid.ui.fragment
 import Constant
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
+import android.util.Log
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -38,19 +37,12 @@ class HomeFragment : BaseMvpFragment<HomeContract.View, HomeContract.Presenter>(
 
     private lateinit var banner: RecyclerViewBanner
 
-    override fun createPresenter(): HomeContract.Presenter  = HomePresenter()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        rootView ?: let {
-            rootView = inflater.inflate(R.layout.fragment_home, container, false)
-            banner = activity?.inflater(R.layout.home_banner) as RecyclerViewBanner
-        }
-        return rootView
+    override fun createPresenter(): HomeContract.Presenter {
+        Log.d("BaseMvpFragment", "createPresenter: ------" + "HomeContract")
+        return HomePresenter()
     }
+
+    override fun attachLayoutRes(): Int = R.layout.fragment_home
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -60,6 +52,7 @@ class HomeFragment : BaseMvpFragment<HomeContract.View, HomeContract.Presenter>(
             setOnRefreshListener(onRefreshListener)
         }
 
+        banner = activity?.inflater(R.layout.home_banner) as RecyclerViewBanner
         banner.run {
             setBannerData(bannerDatas)
         }

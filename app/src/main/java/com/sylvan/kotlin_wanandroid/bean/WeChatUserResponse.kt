@@ -13,12 +13,11 @@ data class WeChatUserResponse(
 ) {
     data class Data(
         var id: Int,
-        var url: String,
-        var imagePath: String,
-        var title: String,
-        var desc: String,
-        var isVisible: Int,
+        var name: String,
+        var courseId: Int,
         var order: Int,
-        var `type`: Int
+        var parentChapterId: Int,
+        var userControlSetTop: Boolean,
+        var visible: Int
     )
 }

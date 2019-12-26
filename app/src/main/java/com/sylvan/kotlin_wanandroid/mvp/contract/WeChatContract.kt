@@ -3,6 +3,7 @@ package com.sylvan.kotlin_wanandroid.mvp.contract
 import com.sylvan.kotlin_wanandroid.base.IModel
 import com.sylvan.kotlin_wanandroid.base.IPresenter
 import com.sylvan.kotlin_wanandroid.base.IView
+import com.sylvan.kotlin_wanandroid.bean.WeChatUserResponse
 
 /**
  * @ClassName: com.sylvan.kotlin_wanandroid.mvp.contract
@@ -12,19 +13,21 @@ import com.sylvan.kotlin_wanandroid.base.IView
 interface WeChatContract {
 
     interface View : IView {
-        fun show()
+        fun onUserNameListSuccess(result: WeChatUserResponse)
+
+        fun onUserNameListFailed(errorNsg: String?)
     }
 
     interface Presenter : IPresenter<View> {
         fun gerUserNameList()
 
-        fun getUserArticleList(id: String, page : Int = 0)
+        fun getUserNameListSuccess(result: WeChatUserResponse)
+
+        fun getUserNameListFailed(errorNsg: String?)
     }
 
     interface Model : IModel {
-        fun getUserList()
-
-        fun getUserArticleList(id: String, page : Int = 0)
+        fun getUserList(presenter: Presenter)
     }
 
 }

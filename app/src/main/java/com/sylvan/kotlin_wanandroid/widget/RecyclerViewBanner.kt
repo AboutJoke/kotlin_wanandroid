@@ -1,5 +1,6 @@
 package com.sylvan.kotlin_wanandroid.widget
 
+import Constant
 import android.content.Context
 import android.content.Intent
 import android.util.AttributeSet
@@ -30,7 +31,7 @@ import kotlinx.coroutines.launch
 class RecyclerViewBanner : FrameLayout {
 
     companion object {
-        private const val DEFAULT_INTERVAL = 5000L
+        private const val DEFAULT_INTERVAL = 3000L
     }
 
     private val datas = mutableListOf<BannerResponse.Data>()
@@ -55,6 +56,7 @@ class RecyclerViewBanner : FrameLayout {
             linearLayoutManager?.initialPrefetchItemCount = 1
             layoutManager = linearLayoutManager
             adapter = bannerAdapter
+            addOnScrollListener(onScrollChangeListener)
         }
 
         bannerAdapter.run {
@@ -74,6 +76,17 @@ class RecyclerViewBanner : FrameLayout {
         val layoutParams =
             ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
         addView(banner, layoutParams)
+    }
+
+    private val onScrollChangeListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            super.onScrollStateChanged(recyclerView, newState)
+
+        }
+
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+        }
     }
 
     private fun getBannerSwitchJob() = GlobalScope.launch {
@@ -140,6 +153,13 @@ class RecyclerViewBanner : FrameLayout {
     inner class BannerAdapter(private val context: Context, datas: MutableList<BannerResponse.Data>) :
         BaseQuickAdapter<BannerResponse.Data, BaseViewHolder>(R.layout.item_banner, datas) {
         override fun convert(helper: BaseViewHolder, item: BannerResponse.Data?) {
+//            val i = helper.adapterPosition % datas.size
+//            val data = datas[i]
+//            data?.run {
+//                helper.setText(R.id.banner_desc, data.title)
+//                val imageView = helper.getView<ImageView>(R.id.banner_img)
+//                Glide.with(context).load(data.imagePath).placeholder(R.drawable.ic_launcher_foreground).into(imageView)
+//            }
             item?.run {
                 helper.setText(R.id.banner_desc, item.title)
                 val imageView = helper.getView<ImageView>(R.id.banner_img)
@@ -148,7 +168,8 @@ class RecyclerViewBanner : FrameLayout {
         }
 
         override fun getItemCount(): Int {
-            return if (mData == null) 0 else if (mData.size < 2) mData.size else Integer.MAX_VALUE
+//            return if (mData == null) 0 else if (mData.size < 2) mData.size else Integer.MAX_VALUE
+            return if (mData == null) 0 else mData.size
         }
 
     }

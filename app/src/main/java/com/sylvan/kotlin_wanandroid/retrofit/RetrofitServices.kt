@@ -1,10 +1,12 @@
 package com.sylvan.kotlin_wanandroid.retrofit
 
+import com.sylvan.kotlin_wanandroid.bean.ArticleResponse
 import com.sylvan.kotlin_wanandroid.bean.BannerResponse
 import com.sylvan.kotlin_wanandroid.bean.HomeListResponse
 import com.sylvan.kotlin_wanandroid.bean.WeChatUserResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 /**
  * @ClassName: com.sylvan.kotlin_wanandroid.retrofit
@@ -38,15 +40,14 @@ interface RetrofitServices {
     suspend fun getWeChatNameList(): WeChatUserResponse
 
     /**
-     * 查看某个公众号历史数据
-     * http://wanandroid.com/wxarticle/list/405/1/json
-     * @param id 公众号 ID
-     * @param page 公众号页码
+     * 知识体系下的文章
+     * http://www.wanandroid.com/article/list/0/json?cid=168
+     * @param page
+     * @param cid
      */
-//    @GET("/wxarticle/list/{id}/{page}/json")
-//    suspend
-//    fun getWechatArticlList(
-//        @Path("id") id: String,
-//        @Path("page") page: Int
-//    ):
+    @GET("article/list/{page}/json")
+    suspend
+    fun getWechatArticlList(
+        @Path("page") page: Int, @Query("cid") cid: Int
+    ): ArticleResponse
 }
