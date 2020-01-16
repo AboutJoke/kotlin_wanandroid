@@ -50,4 +50,11 @@ interface RetrofitServices {
     fun getWechatArticlList(
         @Path("page") page: Int, @Query("cid") cid: Int
     ): ArticleResponse
+
+    /**
+     * 获取项目列表
+     * http://wanandroid.com/wxarticle/chapters/json
+     */
+    @GET("project/tree/json")
+    suspend fun getProjectNameList(): WeChatUserResponse
 }

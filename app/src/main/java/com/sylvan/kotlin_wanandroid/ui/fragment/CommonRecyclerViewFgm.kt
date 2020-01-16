@@ -44,9 +44,7 @@ class CommonRecyclerViewFgm :
     private var pageSize = 20
 
     private val datas = mutableListOf<Article>()
-    private val linearLayoutManager: LinearLayoutManager by lazy {
-        LinearLayoutManager(activity)
-    }
+
     private val recyclerViewItemDecoration by lazy {
         activity?.let {
             SpaceItemDecoration(it)
@@ -69,6 +67,7 @@ class CommonRecyclerViewFgm :
         refresh.run {
             setOnRefreshListener(onRefreshListener)
         }
+        val linearLayoutManager = LinearLayoutManager(activity)
         list.run {
             layoutManager = linearLayoutManager
             adapter = mAdapter
@@ -105,6 +104,7 @@ class CommonRecyclerViewFgm :
     }
 
     override fun cancelRequest() {
+        //
     }
 
     override fun onDataSuccess(articles: ArticleResponse) {

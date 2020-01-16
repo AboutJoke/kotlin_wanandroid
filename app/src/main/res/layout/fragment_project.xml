@@ -1,13 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_content"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:textSize="20sp"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/project_tabs"
+        style="@style/MyTabLayoutStyle"
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:tabMode="scrollable" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/project_viewpager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="project" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </LinearLayout>
