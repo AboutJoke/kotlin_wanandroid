@@ -45,11 +45,11 @@ class CommonRecyclerViewFgm :
 
     private val datas = mutableListOf<Article>()
 
-    private val recyclerViewItemDecoration by lazy {
-        activity?.let {
-            SpaceItemDecoration(it)
-        }
-    }
+//    private val recyclerViewItemDecoration by lazy {
+//        activity?.let {
+//            SpaceItemDecoration(it)
+//        }
+//    }
     private val mAdapter: RecyclerViewAdapter by lazy {
         RecyclerViewAdapter(context, datas)
     }
@@ -71,7 +71,7 @@ class CommonRecyclerViewFgm :
         list.run {
             layoutManager = linearLayoutManager
             adapter = mAdapter
-            recyclerViewItemDecoration?.let { addItemDecoration(it) }
+//            recyclerViewItemDecoration?.let { addItemDecoration(it) }
         }
         mAdapter.run {
             setOnLoadMoreListener(onRequestLoadMoreListener, list)
