@@ -99,7 +99,7 @@ class CommonRecyclerViewFgm :
 
     private val onRequestLoadMoreListener = BaseQuickAdapter.RequestLoadMoreListener {
         swipeRefreshLayout.isRefreshing = false
-        val page = mAdapter.data.size / pageSize + 1
+        val page = mAdapter.data.size / (pageSize + 1)
         mPresenter?.requestKnowledgeList(page, cid)
     }
 
@@ -139,6 +139,6 @@ class CommonRecyclerViewFgm :
         } ?: let {
             activity?.toast("获取数据失败！")
         }
-        refresh.isRefreshing = false
+        refresh?.isRefreshing = false
     }
 }

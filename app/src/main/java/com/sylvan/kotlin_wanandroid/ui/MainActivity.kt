@@ -20,25 +20,28 @@ import kotlinx.android.synthetic.main.content_main.*
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
     private val homeFragment by lazy { HomeFragment() }
+    private val squareFragment by lazy { SquareFragment() }
     private val systemFragment by lazy { SystemFragment() }
     private val wecahtFragment by lazy { WeChatFragment() }
-    private val navFragment by lazy { NavigationFragment() }
+//    private val navFragment by lazy { NavigationFragment() }
     private val projectFragment by lazy { ProjectFragment() }
 
     private val fragmentList = arrayListOf<Fragment>()
     private val titleList = arrayOf(
         R.string.title_home,
+        R.string.title_square,
         R.string.title_system,
         R.string.title_wx,
-        R.string.title_nav,
+//        R.string.title_nav,
         R.string.title_project
     )
 
     init {
         fragmentList.add(homeFragment)
+        fragmentList.add(squareFragment)
         fragmentList.add(systemFragment)
         fragmentList.add(wecahtFragment)
-        fragmentList.add(navFragment)
+//        fragmentList.add(navFragment)
         fragmentList.add(projectFragment)
     }
 
@@ -58,20 +61,24 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
                 viewpager.currentItem = 0
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_system -> {
+            R.id.navigation_square -> {
                 viewpager.currentItem = 1
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_wx -> {
+            R.id.navigation_system -> {
                 viewpager.currentItem = 2
                 return@OnNavigationItemSelectedListener true
             }
-            R.id.navigation_navigation -> {
+            R.id.navigation_wx -> {
                 viewpager.currentItem = 3
                 return@OnNavigationItemSelectedListener true
             }
+//            R.id.navigation_navigation -> {
+//                viewpager.currentItem = 4
+//                return@OnNavigationItemSelectedListener true
+//            }
             R.id.navigation_project -> {
-                viewpager.currentItem = 4
+                viewpager.currentItem = 5
                 return@OnNavigationItemSelectedListener true
             }
         }

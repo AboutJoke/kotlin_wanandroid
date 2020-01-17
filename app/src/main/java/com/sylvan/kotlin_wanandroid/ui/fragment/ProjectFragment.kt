@@ -30,15 +30,14 @@ class ProjectFragment : BaseMvpFragment<ProjectContract.View, ProjectContract.Pr
 
     override fun initView(view: View) {
         super.initView(view)
-        val viewPager: ViewPager = view.findViewById(R.id.project_viewpager)
-        viewPager.run {
+        project_viewpager.run {
             offscreenPageLimit = datas.size
             adapter = viewpagerAdapter
             addOnPageChangeListener(TabLayout.TabLayoutOnPageChangeListener(project_tabs))
         }
         project_tabs.run {
-            setupWithViewPager(viewPager)
-            addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(viewPager))
+            setupWithViewPager(project_viewpager)
+            addOnTabSelectedListener(TabLayout.ViewPagerOnTabSelectedListener(project_viewpager))
         }
     }
 
@@ -59,12 +58,12 @@ class ProjectFragment : BaseMvpFragment<ProjectContract.View, ProjectContract.Pr
         result.data?.let {
             datas.addAll(result.data!!)
             viewpagerAdapter.notifyDataSetChanged()
-            wechat_viewpager.offscreenPageLimit = datas.size
+            project_viewpager.offscreenPageLimit = datas.size
         }
     }
 
     override fun onDataFail(errMsg: String) {
-        errMsg?.let {
+        errMsg.let {
             activity?.toast(it)
         } ?: let {
             activity?.toast("获取数据失败！")

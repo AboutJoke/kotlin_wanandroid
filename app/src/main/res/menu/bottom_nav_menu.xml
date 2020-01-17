@@ -2,28 +2,33 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-            android:id="@+id/navigation_home"
-            android:icon="@drawable/ic_home_black_24dp"
-            android:title="@string/title_home"/>
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_home_black_24dp"
+        android:title="@string/title_home" />
 
     <item
-            android:id="@+id/navigation_system"
-            android:icon="@drawable/ic_menu_casino"
-            android:title="@string/title_system"/>
+        android:id="@+id/navigation_square"
+        android:icon="@drawable/ic_featured_play_list_black_24dp"
+        android:title="@string/title_square" />
 
     <item
-            android:id="@+id/navigation_wx"
-            android:icon="@drawable/ic_menu_book"
-            android:title="@string/title_wx"/>
+        android:id="@+id/navigation_system"
+        android:icon="@drawable/ic_menu_casino"
+        android:title="@string/title_system" />
 
     <item
-            android:id="@+id/navigation_navigation"
-            android:icon="@drawable/ic_menu_navigation"
-            android:title="@string/title_nav"/>
+        android:id="@+id/navigation_wx"
+        android:icon="@drawable/ic_menu_book"
+        android:title="@string/title_wx" />
+
+<!--    <item-->
+<!--        android:id="@+id/navigation_navigation"-->
+<!--        android:icon="@drawable/ic_menu_navigation"-->
+<!--        android:title="@string/title_nav" />-->
 
     <item
-            android:id="@+id/navigation_project"
-            android:icon="@drawable/ic_dashboard_black_24dp"
-            android:title="@string/title_project"/>
+        android:id="@+id/navigation_project"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/title_project" />
 
 </menu>
