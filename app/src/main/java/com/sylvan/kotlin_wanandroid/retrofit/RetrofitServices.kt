@@ -1,9 +1,6 @@
 package com.sylvan.kotlin_wanandroid.retrofit
 
-import com.sylvan.kotlin_wanandroid.bean.ArticleResponse
-import com.sylvan.kotlin_wanandroid.bean.BannerResponse
-import com.sylvan.kotlin_wanandroid.bean.HomeListResponse
-import com.sylvan.kotlin_wanandroid.bean.WeChatUserResponse
+import com.sylvan.kotlin_wanandroid.bean.*
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -65,4 +62,11 @@ interface RetrofitServices {
      */
     @GET("user_article/list/{page}/json")
     suspend fun getSquareList(@Path("page") page: Int): ArticleResponse
+
+    /**
+     * 获取知识体系
+     * http://www.wanandroid.com/tree/json
+     */
+    @GET("tree/json")
+    suspend fun getSystemList(): SystemResponse
 }

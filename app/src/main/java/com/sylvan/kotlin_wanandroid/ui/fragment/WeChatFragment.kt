@@ -1,7 +1,6 @@
 package com.sylvan.kotlin_wanandroid.ui.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout

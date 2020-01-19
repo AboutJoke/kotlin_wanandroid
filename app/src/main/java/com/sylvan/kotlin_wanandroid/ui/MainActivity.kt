@@ -16,6 +16,7 @@ import com.sylvan.kotlin_wanandroid.R
 import com.sylvan.kotlin_wanandroid.base.BaseActivity
 import com.sylvan.kotlin_wanandroid.ui.fragment.*
 import kotlinx.android.synthetic.main.content_main.*
+import toast
 
 class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
@@ -155,6 +156,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_home -> {
+                toast("hhhhhhhhhhhhhhhhhhhhh")
             }
             R.id.nav_gallery -> {
 
