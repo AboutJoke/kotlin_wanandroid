@@ -50,6 +50,10 @@ object Constant {
      */
     const val CONTENT_CHILDREN_DATA_KEY = "childrenData"
     /**
+     * content data key
+     */
+    const val CONTENT_DATA_KEY = "content_data"
+    /**
      * target key
      */
     const val CONTENT_TARGET_KEY = "target"

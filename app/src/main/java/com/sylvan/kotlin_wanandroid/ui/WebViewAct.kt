@@ -59,16 +59,6 @@ class WebViewAct : BaseActivity() {
             }
         }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item?.itemId) {
-            android.R.id.home -> {
-                finish()
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
     override fun onResume() {
         super.onResume()
         webView.webLifeCycle.onResume()

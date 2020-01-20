@@ -1,5 +1,7 @@
 package com.sylvan.kotlin_wanandroid.bean
 
+import java.io.Serializable
+
 /**
  * @ClassName: com.sylvan.kotlin_wanandroid.bean
  * @Author: sylvan
@@ -18,7 +20,7 @@ data class SystemResponse(
         val order: Int,
         val parentChapterId: Int,
         val visible: Int
-    )
+    ) : Serializable
 
     data class Knowledge(
         val children: List<Any>,
@@ -28,5 +30,5 @@ data class SystemResponse(
         val order: Int,
         val parentChapterId: Int,
         val visible: Int
-    )
+    ) : Serializable
 }

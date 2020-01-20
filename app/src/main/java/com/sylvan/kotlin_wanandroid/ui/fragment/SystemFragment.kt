@@ -1,5 +1,6 @@
 package com.sylvan.kotlin_wanandroid.ui.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,6 +11,7 @@ import com.sylvan.kotlin_wanandroid.base.BaseMvpFragment
 import com.sylvan.kotlin_wanandroid.bean.SystemResponse
 import com.sylvan.kotlin_wanandroid.mvp.contract.SystemContract
 import com.sylvan.kotlin_wanandroid.mvp.presenter.SystemPresenter
+import com.sylvan.kotlin_wanandroid.ui.DetailListAct
 import kotlinx.android.synthetic.main.fragment_system.*
 import toast
 
@@ -18,13 +20,15 @@ import toast
  * @Author: sylvan
  * @Date: 19-7-25
  */
-class SystemFragment : BaseMvpFragment<SystemContract.View, SystemContract.Presenter>(), SystemContract.View {
+class SystemFragment : BaseMvpFragment<SystemContract.View, SystemContract.Presenter>(),
+    SystemContract.View {
 
     companion object {
         fun getInstance(): SystemFragment = SystemFragment()
     }
+
     private val datas = mutableListOf<SystemResponse.Data>()
-    private val listAdapter : SystemAdapter by lazy {
+    private val listAdapter: SystemAdapter by lazy {
         SystemAdapter(activity, datas = datas)
     }
 
@@ -36,6 +40,16 @@ class SystemFragment : BaseMvpFragment<SystemContract.View, SystemContract.Prese
         system_list.run {
             layoutManager = LinearLayoutManager(activity)
             adapter = listAdapter
+        }
+        listAdapter.setOnItemClickListener { _, _, position ->
+            if (datas.isNotEmpty()) {
+                val data = datas[position]
+                Intent(activity, DetailListAct::class.java).run {
+                    putExtra(Constant.CONTENT_DATA_KEY, data)
+                    putExtra(Constant.CONTENT_TITLE_KEY, data.name)
+                    startActivity(this)
+                }
+            }
         }
     }
 

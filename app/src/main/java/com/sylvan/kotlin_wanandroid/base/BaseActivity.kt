@@ -2,6 +2,7 @@ package com.sylvan.kotlin_wanandroid.base
 
 import android.content.Context
 import android.os.Bundle
+import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import com.gyf.barlibrary.ImmersionBar
@@ -15,7 +16,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     protected lateinit var immersionBar: ImmersionBar
 
-    private val imm : InputMethodManager by lazy {
+    private val imm: InputMethodManager by lazy {
         getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
     }
 
@@ -57,6 +58,16 @@ abstract class BaseActivity : AppCompatActivity() {
         currentFocus?.let {
             imm.hideSoftInputFromWindow(it.windowToken, 2)
         }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item?.itemId) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 }
